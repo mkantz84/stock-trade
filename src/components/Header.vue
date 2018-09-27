@@ -11,15 +11,11 @@
                           </li>
 
                           <li>
-                              <a href="#">Search</a>
+                              <a href="#">Portfolio</a>
                           </li>
 
                           <li>
-                              <a href="#">Features</a>
-                          </li>
-
-                          <li>
-                              <a href="#">Blog</a>
+                              <a href="#">Stocks</a>
                           </li>
                       </ul>
                   </div>
