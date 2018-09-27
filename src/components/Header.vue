@@ -7,7 +7,7 @@
                   <div class="container">
                       <ul class="nav">
                           <li>
-                              <a href="#">Explore Product</a>
+                              <a href="#">Stock Trader</a>
                           </li>
 
                           <li>
