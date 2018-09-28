@@ -1,29 +1,16 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="span12">
-          <div class="navbar">
-              <div class="navbar-inner" style="margin-top: 20px;">
-                  <div class="container">
-                      <ul class="nav">
-                          <li>
-                              <a href="#">Stock Trader</a>
-                          </li>
-
-                          <li>
-                              <a href="#">Portfolio</a>
-                          </li>
-
-                          <li>
-                              <a href="#">Stocks</a>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-          </div>
-        </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 15px">
+    <a class="navbar-brand" href="#">Stock Trader</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="#">Portfolio <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link" href="#">Stocks</a>
       </div>
     </div>
+  </nav>
 </template>
 
 <script>
