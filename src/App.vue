@@ -1,7 +1,11 @@
 <template>
   <div id="app" class="container">
     <app-headers></app-headers>
-    <app-home></app-home>
+    <div class="row">
+      <div class="col-12 p-3">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -19,5 +23,7 @@ export default {
 </script>
 
 <style>
-
+  body {
+    padding: 30px;
+  }
 </style>

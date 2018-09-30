@@ -1,16 +1,52 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 15px">
-    <a class="navbar-brand" href="#">Stock Trader</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <router-link to="/" class="navbar-brand">Stock Trader</router-link>
+
+
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <router-link to="/portfolio" activeClass="active" tag="li"><a class="nav-link">Portfolio</a></router-link>
+      <router-link to="/stocks" activeClass="active" tag="li"><a class="nav-link">Stocks</a></router-link>
+    </ul>
+    <ul class="navbar-nav navbar-right">
+      <li class="nav-item">
+        <a class="nav-link" href="#">End Day</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#" id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">Save & Load
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Save Data</a>
+          <a class="dropdown-item" href="#">Load Data</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-top: 15px">
+    <router-link to="/" class="navbar-brand">Stock Trader</router-link>
+
+    <div class="collapse navbar-collapse">
       <div class="navbar-nav">
-        <a class="nav-item nav-link" href="#">Portfolio <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="#">Stocks</a>
+        <router-link to="/portfolio" class="nav-item nav-link" href="#">Portfolio <span class="sr-only">(current)</span></router-link>
+        <router-link to="/stocks" class="nav-item nav-link" href="#">Stocks</router-link>
       </div>
     </div>
-  </nav>
+  </nav> -->
 </template>
 
 <script>
