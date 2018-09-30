@@ -10,10 +10,14 @@
             <input
               type="number"
               class="form-control"
-              placeholder="Quantity">
+              placeholder="Quantity"
+              v-model="quantity">
           </div>
           <div class="float-right">
-            <button class="btn btn-success">Buy</button>
+            <button
+              @click.prevent="buyStock"
+              :disabled="quantity<=0"
+              class="btn btn-success">Buy</button>
           </div>
         </div>
       </div>
@@ -22,7 +26,23 @@
 
 <script>
 export default {
-  props: ['stock']
+  props: ['stock'],
+  data() {
+    return {
+      quantity: ''
+    }
+  },
+  methods: {
+    buyStock() {
+      const order = {
+        stockId: this.stock.id,
+        stockPrice: this.stock.price,
+        quantity: this.quantity
+      }
+      this.$store.dispatch('buyStock',order);
+      this.quantity='';
+    }
+  }
 }
 </script>
 

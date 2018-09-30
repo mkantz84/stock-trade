@@ -14,7 +14,7 @@
 export default {
   computed: {
     funds() {
-      return this.$store.state.funds;
+      return (this.$store.state.funds).toFixed(3);
     }
   }
 }
