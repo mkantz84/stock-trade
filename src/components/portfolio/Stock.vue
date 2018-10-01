@@ -16,7 +16,7 @@
           <div class="float-right">
             <button
               @click.prevent="sellStock"
-              :disabled="quantity<=0"
+              :disabled="quantity <= 0"
               class="btn btn-info">Sell</button>
           </div>
         </div>

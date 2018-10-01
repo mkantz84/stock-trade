@@ -14,7 +14,7 @@
 export default {
   computed: {
     funds() {
-      return (this.$store.state.funds).toFixed(3);
+      return (this.$store.getters.funds/1000).toFixed(3);
     }
   }
 }
