@@ -11,13 +11,14 @@
               type="number"
               class="form-control"
               placeholder="Quantity"
-              v-model="quantity">
+              v-model="quantity"
+              :class="{danger: insufficientQuantity}">
           </div>
           <div class="float-right">
             <button
               @click.prevent="sellStock"
-              :disabled="quantity <= 0"
-              class="btn btn-info">Sell</button>
+              :disabled="insufficientQuantity || quantity <= 0"
+              class="btn btn-info">{{ insufficientQuantity ? 'Not enough Stocks' : 'Sell'}}</button>
           </div>
         </div>
       </div>
@@ -28,27 +29,38 @@
 import { mapActions } from "vuex";
 
 export default {
-  props: ['stock'],
+  props: ["stock"],
   data() {
     return {
-      quantity: ''
+      quantity: ""
+    };
+  },
+  computed: {
+    insufficientQuantity() {
+      return this.stock.quantity < this.quantity;
     }
   },
   methods: {
     ...mapActions({
-      placeSellOrder: 'sellStock'
+      placeSellOrder: "sellStock"
     }),
     sellStock() {
       const order = {
         stockId: this.stock.id,
         stockPrice: this.stock.price,
         quantity: this.quantity
-      }
+      };
       this.placeSellOrder(order);
-      this.quantity = '';
+      this.quantity = "";
     }
   }
-}
+};
 </script>
+
+<style scoped>
+  .danger {
+    border: 1px solid red
+  }
+</style>
 
 

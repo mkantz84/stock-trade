@@ -5,7 +5,7 @@
       <div class="card-text">You may Save or Load your Data</div>
       <div class="card-text">Click on 'End Day' to begin a new Day!</div>
       <hr>
-      <h5>Your Funds: ${{ funds }}</h5>
+      <h5>Your Funds: {{ funds | currency }}</h5>
     </div>
   </div>
 </template>
@@ -14,7 +14,7 @@
 export default {
   computed: {
     funds() {
-      return (this.$store.getters.funds/1000).toFixed(3);
+      return this.$store.getters.funds;
     }
   }
 }
