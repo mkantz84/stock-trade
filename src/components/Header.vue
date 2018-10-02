@@ -10,9 +10,9 @@
       </ul>
       <ul class="navbar-nav navbar-right">
         <li class="nav-item">
-          <a class="nav-link mr-3" href="#">End Day</a>
+          <a class="nav-link mr-3" @click="endDay" href="#">End Day</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" @click="isDropDownOpen = !isDropDownOpen">
           <a
             class="nav-link dropdown-toggle mr-3"
             href="#" id="navbarDropdown"
@@ -21,8 +21,11 @@
             aria-haspopup="true"
             aria-expanded="false">Save & Load
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Save Data</a>
+          <div
+            class="dropdown-menu"
+            :class="{show: isDropDownOpen}"
+            aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#" @click="saveData">Save Data</a>
             <a class="dropdown-item" href="#">Load Data</a>
           </div>
         </li>
@@ -33,16 +36,39 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
-  computed: {
-    funds(){
-      return this.$store.getters.funds;
+  data() {
+    return {
+      isDropDownOpen: false,
+      node: 'data'
     }
+  },
+  computed: {
+    funds() {
+      return this.$store.getters.funds;
+    },
+    stocks() {
+      return this.$store.getters.stockPortfolio;
+    }
+  },
+  methods: {
+    ...mapActions([
+      'randomizeStocks'
+    ]) ,
+    endDay() {
+      this.randomizeStocks();
+    },
+    saveData() {
+      this.resource.saveData(this.stocks);
+    }
+  },
+  created() {
+    const customActions = {
+        saveData: {method: 'POST', url: 'stocks.json'},
+        getData: {method: 'GET'}
+    };
+    this.resource = this.$resource('{node}.json', {}, customActions);
   }
-}
+};
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>
