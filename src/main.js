@@ -4,12 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import { store } from "./store/store"
-import vueResource from 'vue-resource'
+import VueResource from 'vue-resource'
 
 Vue.config.productionTip = false;
-Vue.use(vueResource);
+Vue.use(VueResource);
 
-Vue.http.options.root = 'https://vue-js-15b99.firebaseio.com/';
+Vue.http.options.root = 'https://vuejs-stcktrader.firebaseio.com/';
 Vue.http.interceptors.push((request, next) => {
   if (request.method == 'POST') {
     request.method = 'PUT';

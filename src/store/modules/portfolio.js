@@ -25,16 +25,14 @@ const mutations = {
     }
     state.funds += stockPrice * quantity;
   },
-  'SET_PORTFOLIO_STOCKS'(state, stocks) {
-    state.stocks = stocks;
+  'SET_PORTFOLIO'(state, portfolio) {
+    state.funds = portfolio.funds;
+    state.stocks = portfolio.stockPortfolio ? portfolio.stockPortfolio : [];
   }
 }
 const actions = {
   sellStock({ commit }, order) {
     commit('SELL_STOCK', order);
-  },
-  setStocks({commit}, stocks) {
-    commit('SET_PORTFOLIO_STOCKS', stocks);
   }
 };
 

@@ -26,7 +26,7 @@
             :class="{show: isDropDownOpen}"
             aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#" @click="saveData">Save Data</a>
-            <a class="dropdown-item" href="#" @click="getData">Load Data</a>
+            <a class="dropdown-item" href="#" @click="loadData">Load Data</a>
           </div>
         </li>
       </ul>
@@ -54,34 +54,29 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'randomizeStocks',
-      'setStocks'
-    ]) ,
+    ...mapActions({
+      randomizeStocks: 'randomizeStocks',
+      fetchData: 'loadData'
+    }) ,
     endDay() {
       this.randomizeStocks();
     },
     saveData() {
-      this.resource.saveData(this.stocks);
+      const data = {
+        funds: this.$store.getters.funds,
+        stockPortfolio: this.$store.getters.stockPortfolio,
+        stocks: this.$store.getters.stocks
+      }
+      this.resource.saveData(data);
     },
-    getData() {
-      this.resource.getData({node: this.node})
-          .then(response => {
-              return response.json();
-          })
-          .then(data => {
-              const resultArray = [];
-              for (let key in data) {
-                  resultArray.push(data[key]);
-              }
-              this.setStocks(resultArray);
-          });
+    loadData() {
+      this.fetchData();
     }
   },
   created() {
     const customActions = {
-        saveData: {method: 'POST', url: 'stocks.json'},
-        getData: {method: 'GET', url: 'stocks.json'}
+        saveData: {method: 'PUT', url: 'data.json'},
+        getData: {method: 'GET', url: 'data.json'}
     };
     this.resource = this.$resource('{node}.json', {}, customActions);
   }

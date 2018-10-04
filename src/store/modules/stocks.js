@@ -1,7 +1,6 @@
 import stocks from "../../data/stocks";
 
 const state = {
-  funds: 10,
   stocks: []
 };
 
