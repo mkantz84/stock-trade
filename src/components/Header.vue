@@ -26,7 +26,7 @@
             :class="{show: isDropDownOpen}"
             aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="#" @click="saveData">Save Data</a>
-            <a class="dropdown-item" href="#">Load Data</a>
+            <a class="dropdown-item" href="#" @click="getData">Load Data</a>
           </div>
         </li>
       </ul>
@@ -37,6 +37,7 @@
 
 <script>
 import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -54,19 +55,33 @@ export default {
   },
   methods: {
     ...mapActions([
-      'randomizeStocks'
+      'randomizeStocks',
+      'setStocks'
     ]) ,
     endDay() {
       this.randomizeStocks();
     },
     saveData() {
       this.resource.saveData(this.stocks);
+    },
+    getData() {
+      this.resource.getData({node: this.node})
+          .then(response => {
+              return response.json();
+          })
+          .then(data => {
+              const resultArray = [];
+              for (let key in data) {
+                  resultArray.push(data[key]);
+              }
+              this.setStocks(resultArray);
+          });
     }
   },
   created() {
     const customActions = {
         saveData: {method: 'POST', url: 'stocks.json'},
-        getData: {method: 'GET'}
+        getData: {method: 'GET', url: 'stocks.json'}
     };
     this.resource = this.$resource('{node}.json', {}, customActions);
   }

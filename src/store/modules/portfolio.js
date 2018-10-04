@@ -24,11 +24,17 @@ const mutations = {
       state.stocks.splice(state.stocks.indexOf(record), 1);
     }
     state.funds += stockPrice * quantity;
+  },
+  'SET_PORTFOLIO_STOCKS'(state, stocks) {
+    state.stocks = stocks;
   }
 }
 const actions = {
   sellStock({ commit }, order) {
     commit('SELL_STOCK', order);
+  },
+  setStocks({commit}, stocks) {
+    commit('SET_PORTFOLIO_STOCKS', stocks);
   }
 };
 

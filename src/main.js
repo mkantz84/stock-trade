@@ -15,7 +15,7 @@ Vue.http.interceptors.push((request, next) => {
     request.method = 'PUT';
   }
   next(response => {
-    response.json = () => { return {messages: response.body} }
+    response.json = () => { return response.body }
   });
 });
 
